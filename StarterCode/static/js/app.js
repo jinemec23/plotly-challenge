@@ -19,7 +19,7 @@ d3.json("samples.json").then((importedData) => {
         dropdown.append('option').text(v);
     })
 
-    var  topten_samples  =  samples.map(row  =>  row.sample_values.slice(0,  10));    
+    // var  topten_samples  =  samples.map(row  =>  row.sample_values.slice(0,  10));    
     // console.log(`top_ten${topten_samples}`);
 
 
@@ -36,8 +36,31 @@ d3.json("samples.json").then((importedData) => {
         // console.log(topten_ids);
         var topten_labels = samples.map(row => row.otu_labels.slice(0, 10));
         // console.log(topten_labels);
+        var trace = {
+                x: otu_values,
+                y: topten_ids.map(r => `UTO ${r}`),
+                text: topten_labels,
+                type: 'bar',
+                orientation: 'h'
+            }
+            // Plotly.Plot('bar', [trace]);
+            // var sample_values = samples.map(row => row.sample_values);
+            // var otu_ids = samples.map(row => row.otu_ids);
+            // var otu_labels = samples.map(row => row.otu_labels);
+            // var min_id = d3.min(otu_ids);
+            // var max_id = d3.max(otu_ids);
+            // var map_nr = d3.scaleLinear()
+            //     .domain([min_id, max_id])
+            //     .range([0, 1]);
+            // var trace1 = {
+            //     x: otu_ids,
+            //     y: sample_values,
+            //     text: otu_labels,
+            //     mode: 'markers',
+            //     marker:
+            // }
+    }
 
-    };
 
 
 
@@ -45,8 +68,8 @@ d3.json("samples.json").then((importedData) => {
 
 
 
-    function optionChanged() {
-        updatePlotly(newID);
+    function optionChanged(updateID) {
+        updatePlotly(updateID);
     }
 
 
